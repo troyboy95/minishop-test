@@ -1,11 +1,11 @@
-# 🛒 Next.js E-Commerce Demo
+# Next.js E-Commerce Demo
 
 A simple e-commerce demo built with **Next.js 13+**, **TypeScript**, and **shadcn/ui**.  
 It demonstrates product listing, search, filters, cart management, and a checkout flow — all without a backend.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the repo
 ```bash
