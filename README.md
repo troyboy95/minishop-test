@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Next.js E-Commerce Demo
 
-## Getting Started
+A simple e-commerce demo built with **Next.js 13+**, **TypeScript**, and **shadcn/ui**.  
+It demonstrates product listing, search, filters, cart management, and a checkout flow — all without a backend.
 
-First, run the development server:
+---
 
+## 🚀 Getting Started
+
+### 1. Clone the repo
 ```bash
+git clone https://github.com/troyboy/minishop-test.git
+cd minishop-test
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Visit http://localhost:3000/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Product Listing & Filters
+Grid layout with skeleton loading, “load more”, search by name, filter by category, and sort by price.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Product Detail Pages
+Dynamic routes (/product/[id]) showing description, image, rating, and Add to Cart.
 
-## Learn More
+Cart Management
+Slide-over cart (shadcn Sheet) with increment, decrement, remove, and subtotal/tax/total calculations.
 
-To learn more about Next.js, take a look at the following resources:
+Checkout Flow
+Simple checkout form with validation (react-hook-form + zod). Confirmation screen + success toast (Sonner).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Tech Stack & Why
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js 15.3 App Router → File-based routing, fast builds
 
-## Deploy on Vercel
+TypeScript → Type-safety and self-documenting code.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+shadcn/ui → Headless + styled components (Sheet, Button, Card, Skeleton, etc.) for consistency and flexibility.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+react-hook-form + zod → Minimal, performant form handling with schema validation.
+
+Zustand for cart state → Keeps logic centralized and predictable.
