@@ -34,9 +34,9 @@ const CheckoutPage = () => {
 
   return (
     <div className='flex w-full flex-col sm:flex-row p-1'>
-      <Button variant="default" onClick={() => router.push("/")}>
+      {/* <Button variant="default" onClick={() => router.push("/")}>
         Back <HomeIcon />
-      </Button>
+      </Button> */}
       {
         !confirmed ?
         <div className='sm:w-1/2 w-full p-1 mt-5'>
