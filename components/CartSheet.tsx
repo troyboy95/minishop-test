@@ -11,9 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { RotateCcw, ShoppingCartIcon, TrashIcon } from "lucide-react";
-import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "./ui/separator";
 
 export function CartSheet() {

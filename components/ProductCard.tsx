@@ -4,9 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import AddToCartButton from "./AddToCartButton";
+import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const { addItem, items } = useCartStore();
+  const { addItem } = useCartStore();
 
   return (
     <Link href={`/product/${product.id}`}>
@@ -15,7 +16,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <CardTitle>{product.name}</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
-        <img src={product.image} alt={product.name} className="h-40 object-contain" />
+        <Image src={product.image} alt={product.name} className="h-40 object-contain" width={160} height={160} />
         <p>${product.price}</p>
         <p className="text-sm text-muted-foreground">⭐ {product.rating}</p>
         <div className="flex">

@@ -1,13 +1,12 @@
 'use client'
 import CheckoutForm from '@/components/CheckoutForm'
-import Checkout from '@/components/CheckoutForm'
 import { Separator } from '@/components/ui/separator'
 import { useCartStore } from '@/store/cartStore'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-const page = () => {
+const CheckoutPage = () => {
 
   const { items } = useCartStore()
   const subtotal = items.reduce((acc, i) => acc + i.price * i.quantity, 0);
@@ -61,7 +60,7 @@ const page = () => {
           <p>
             Thank you for placing your order!
             <br />
-            You'll receive a confirmation email shortly
+            You&apos;ll receive a confirmation email shortly
           </p>
         )
       }
@@ -73,4 +72,4 @@ const page = () => {
   )
 }
 
-export default page
+export default CheckoutPage

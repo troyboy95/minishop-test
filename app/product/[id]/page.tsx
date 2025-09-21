@@ -4,9 +4,10 @@ import products from "@/data/products.json"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { HomeIcon, ShoppingCart } from "lucide-react"
+import { HomeIcon } from "lucide-react"
 import { useCartStore } from "@/store/cartStore"
 import AddToCartButton from '@/components/AddToCartButton'
+import Image from 'next/image'
 
 export default function ProductPage() {
   const params = useParams()
@@ -30,10 +31,12 @@ export default function ProductPage() {
       </Button>
       <Card className="flex flex-col md:flex-row gap-6">
         <div className="flex-1">
-          <img
+          <Image
             src={product.image}
             alt={product.name}
             className="w-full h-80 object-contain rounded-md"
+            width={320}
+            height={320}
           />
         </div>
 
@@ -47,7 +50,7 @@ export default function ProductPage() {
             <Separator />
             <p className='text-gray-500'> Description:</p>
             <ul className='list-disc pl-2 ms-3'>
-              {product.description.split(",").map((item, i) => (
+              {product.description.split(",").map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>

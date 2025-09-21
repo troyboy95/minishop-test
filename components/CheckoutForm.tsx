@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -35,7 +34,12 @@ const checkoutSchema = z.object({
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
-export default function CheckoutForm(props: any) {
+interface CheckoutFormProps {
+    confirmed: boolean;
+    setConfirmed: (cnf: boolean) => void;
+}
+
+export default function CheckoutForm(props: CheckoutFormProps) {
 
     const [submittedData, setSubmittedData] = useState<CheckoutFormValues | null>(null);
  
