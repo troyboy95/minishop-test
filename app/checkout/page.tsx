@@ -1,7 +1,9 @@
 'use client'
 import CheckoutForm from '@/components/CheckoutForm'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useCartStore } from '@/store/cartStore'
+import { HomeIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -32,6 +34,9 @@ const CheckoutPage = () => {
 
   return (
     <div className='flex w-full flex-col sm:flex-row p-1'>
+      <Button variant="default" onClick={() => router.push("/")}>
+        Back <HomeIcon />
+      </Button>
       {
         !confirmed ?
         <div className='sm:w-1/2 w-full p-1 mt-5'>
