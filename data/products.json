@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "Aero Wireless Headphones",
+    "category": "Electronics",
+    "price": 129.99,
+    "rating": 4.4,
+    "image": "/images/headphones.jpeg",
+    "description": "Lightweight, 30h battery life, BT 5.3."
+  },
+  {
+    "id": 2,
+    "name": "Nimbus Mechanical Keyboard",
+    "category": "Electronics",
+    "price": 89.0,
+    "rating": 4.7,
+    "image": "/images/keyboard.jpeg",
+    "description": "Hot-swappable switches, RGB, USB-C."
+  },
+  {
+    "id": 3,
+    "name": "Summit Running Shoes",
+    "category": "Fashion",
+    "price": 74.5,
+    "rating": 4.2,
+    "image": "/images/shoes.jpeg",
+    "description": "Breathable knit upper, cushioned midsole."
+  },
+  {
+    "id": 4,
+    "name": "Cascade Water Bottle 1L",
+    "category": "Home",
+    "price": 19.99,
+    "rating": 4.5,
+    "image": "/images/bottle.jpeg",
+    "description": "Insulated stainless steel, leak-proof lid."
+  },
+  {
+    "id": 5,
+    "name": "Aurora Desk Lamp",
+    "category": "Home",
+    "price": 39.95,
+    "rating": 4.1,
+    "image": "/images/lamp.jpeg",
+    "description": "Dimmable LED, adjustable arm, USB port."
+  },
+  {
+    "id": 6,
+    "name": "Voyage Backpack 28L",
+    "category": "Fashion",
+    "price": 59.0,
+    "rating": 4.6,
+    "image": "/images/backpack.jpeg",
+    "description": "Laptop sleeve, water-resistant, multiple pockets."
+  },
+  {
+    "id": 7,
+    "name": "Bistro Ceramic Mug",
+    "category": "Home",
+    "price": 12.0,
+    "rating": 4.0,
+    "image": "/images/mug.jpeg",
+    "description": "Dishwasher safe, 350ml capacity."
+  },
+  {
+    "id": 8,
+    "name": "Pixel Art Print",
+    "category": "Art",
+    "price": 24.0,
+    "rating": 4.3,
+    "image": "/images/art.jpeg",
+    "description": "A4 giclée print on archival paper."
+  },
+  {
+    "id": 9,
+    "name": "Trailblazer Jacket",
+    "category": "Fashion",
+    "price": 119.0,
+    "rating": 4.5,
+    "image": "/images/jacket.jpeg",
+    "description": "Windproof shell, packable hood."
+  },
+  {
+    "id": 10,
+    "name": "Mono Wireless Mouse",
+    "category": "Electronics",
+    "price": 29.99,
+    "rating": 4.1,
+    "image": "/images/mouse.jpeg",
+    "description": "Silent clicks, adjustable DPI."
+  },
+  {
+    "id": 11,
+    "name": "Studio Monitor Stand",
+    "category": "Electronics",
+    "price": 44.0,
+    "rating": 4.2,
+    "image": "/images/stand.jpeg",
+    "description": "Aluminum, anti-vibration pads."
+  },
+  {
+    "id": 12,
+    "name": "Canvas Tote Bag",
+    "category": "Fashion",
+    "price": 18.5,
+    "rating": 4.0,
+    "image": "/images/tote.jpeg",
+    "description": "Organic cotton, inner pocket."
+  }
+]

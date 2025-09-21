@@ -1,103 +1,126 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect, useMemo } from "react";
+import products from "@/data/products.json";
+import ProductCard from "@/components/ProductCard";
+import SkeletonProductCard from "@/components/SkeletonCard";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchItem, setSearchItem] = useState("");
+  const [category, setCategory] = useState("all");
+  const [sort, setSort] = useState<"default" | "low" | "high">("default");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  useEffect(() => {
+    const timerID = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timerID);
+  }, []);
+
+  const filteredProducts = useMemo(() => {
+    let result = [...products];
+
+    if (searchItem.trim()) {
+      result = result.filter((product) =>
+        product.name.toLowerCase().includes(searchItem.toLowerCase())
+      );
+    }
+
+    if (category !== "all") {
+      result = result.filter((product) => product.category === category);
+    }
+
+    if (sort === "low") {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sort === "high") {
+      result.sort((a, b) => b.price - a.price);
+    }
+
+    return result;
+  }, [searchItem, category, sort]);
+
+  const visibleProducts = useMemo(
+    () => filteredProducts.slice(0, visibleCount),
+    [filteredProducts, visibleCount]
+  );
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row gap-4 items-center">
+        <Input
+          disabled={isLoading}
+          value={searchItem}
+          onChange={(e) => setSearchItem(e.target.value)}
+          placeholder="Search for electronics, essentials..."
+          className=" sm:w-1/3"
+        />
+        
+        <Select
+          disabled={isLoading}
+          value={category}
+          onValueChange={(val) => setCategory(val)}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter by category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="Electronics">Electronics</SelectItem>
+            <SelectItem value="Fashion">Fashion</SelectItem>
+            <SelectItem value="Home">Home</SelectItem>
+            <SelectItem value="Art">Art</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select
+          disabled={isLoading}
+          value={sort}
+          onValueChange={(val: "default" | "low" | "high") => setSort(val)}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Sort by price" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="default">Default</SelectItem>
+            <SelectItem value="low">Price: Low → High</SelectItem>
+            <SelectItem value="high">Price: High → Low</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonProductCard key={`skeleton-${i}`} />
+            ))
+          : visibleProducts.length > 0 ? visibleProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          :
+          <p className="sm:text-2xl text-xl text-black/50 text-center m-auto">No relevant items found!</p>
+          }
+      </div>
+
+      {!isLoading && visibleCount < filteredProducts.length && (
+        <div className="flex justify-center">
+          <Button
+            onClick={() => setVisibleCount((p) => p + 6)}
+            className="px-4 py-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Load More
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
     </div>
   );
 }
